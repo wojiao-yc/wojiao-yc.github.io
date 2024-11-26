@@ -1,6 +1,6 @@
 # Site Settings
-name: Jekflix
-title: Jekflix | A blog theme for Jekyll
+name: wojiao-yc
+title: Welcome to the homepage of wojiao-yc
 description: Jekflix is a template for Jekyll inspired by Netflix and made by
   Thiago Rossener.
 tags:
@@ -11,7 +11,7 @@ tags:
   - netlify
 show_hero: true
 menu:
-  - title: Wojiao-yc
+  - title: home
     url: /
   - title: About
     url: /about
