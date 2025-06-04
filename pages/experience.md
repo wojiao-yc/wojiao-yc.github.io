@@ -6,7 +6,7 @@ permalink: /experience/
 
 <div class="edu-card">
   <div class="edu-card-header">
-    <img src="/assets/img/sustech.jpg" alt="SUSTech" class="edu-logo">
+    <img src="/assets/img/experience/SUSTech.png.jpg" alt="SUSTech" class="edu-logo">
     <span class="edu-type">Undergraduate</span>
   </div>
   <div class="edu-card-body">
@@ -15,23 +15,23 @@ permalink: /experience/
     <ul>
       <li><b>Major:</b> Intelligent Medical Engineering</li>
       <li><b>Academic Supervisor:</b> Dr. Quanying Liu</li>
-      <li><b>GPA:</b> 3.93 / 4 (98.25), Ranking 1 / 41</li>
-      <li>2023 Outstanding Student Scholarships (First Prize)</li>
+      <li><b>GPA:</b> 3.78 / 4</li>
+      <li>2024 Outstanding Student Scholarships (First Prize)</li>
     </ul>
   </div>
 </div>
 
 <div class="edu-card">
   <div class="edu-card-header">
-    <img src="/assets/img/ucsd.png" alt="UCSD" class="edu-logo">
-    <span class="edu-type">Summer Session</span>
+    <img src="/assets/img/experience/NUS.png" alt="NUS" class="edu-logo">
+    <span class="edu-type">Summer Workshop</span>
   </div>
   <div class="edu-card-body">
-    <div class="edu-school">University of California, San Diego</div>
-    <div class="edu-time">July 2024 – August 2024 San Diego, US</div>
+    <div class="edu-school">National University of Singapore</div>
+    <div class="edu-time">July 2024 – August 2024 Singapore</div>
     <ul>
-      <li><b>Major:</b> Psychology</li>
-      <li><b>GPA:</b> 4/4 (all A+)</li>
+      <li><b>Grade:</b> A</li>
+      <li><b>Course Project:</b> <a href="https://github.com/wojiao-yc/Qliphoth" target="_blank">Qliphoth (Roguelike Game, GitHub)</a></li>
     </ul>
   </div>
 </div>
@@ -58,7 +58,7 @@ permalink: /experience/
   object-fit: contain;
   background: #fff;
   border: 1px solid #eee;
-}
+}g
 .edu-type {
   font-size: 1.5em;
   color: #888;
