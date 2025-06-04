@@ -63,9 +63,9 @@ permalink: /experience/
   left: 32px;
 }
 .edu-logo {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  border-radius: 80%;
   object-fit: contain;
   background: #fff;
   border: 1px solid #eee;
@@ -99,5 +99,9 @@ permalink: /experience/
 }
 .edu-card li {
   margin-bottom: 4px;
+}
+.edu-card a {
+  color: inherit;
+  text-decoration: underline;
 }
 </style> 
