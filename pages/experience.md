@@ -4,8 +4,6 @@ title: Experience
 permalink: /experience/
 ---
 
-## Education
-
 <div class="edu-card">
   <div class="edu-card-header">
     <img src="/assets/img/sustech.jpg" alt="SUSTech" class="edu-logo">
@@ -43,7 +41,7 @@ permalink: /experience/
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 16px 0 rgba(0,0,0,0.08);
-  margin: 32px 0;
+  margin: 32px auto;
   padding: 32px 32px 24px 32px;
   max-width: 900px;
 }
