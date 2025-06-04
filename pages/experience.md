@@ -4,8 +4,6 @@ title: Experience
 permalink: /experience/
 ---
 
-## Education
-
 <div class="edu-card">
   <div class="edu-card-logo">
     <img src="/assets/img/experience/SUSTech.png" alt="SUSTech" class="edu-logo">
