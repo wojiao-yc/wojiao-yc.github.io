@@ -11,10 +11,12 @@ tags:
   - netlify
 show_hero: true
 menu:
-  - title: home
+  - title: Home
     url: /
   - title: CV
     url: /cv
+  - title: Experience
+    url: /experience
   - title: Contact
     url: /contact
   - title: Feed
