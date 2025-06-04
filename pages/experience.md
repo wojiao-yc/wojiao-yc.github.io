@@ -57,8 +57,8 @@ permalink: /experience/
 }
 .edu-card-logo {
   position: absolute;
-  top: 32px;
-  left: 32px;
+  top: 16px;
+  left: 16px;
 }
 .edu-logo {
   width: 72px;
