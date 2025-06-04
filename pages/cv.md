@@ -47,5 +47,5 @@ Computer Science, Supervisor: Dr. Qingxian Song
   **ICME 2025 oral** | [Paper](https://arxiv.org/abs/2410.23754)
     <!-- **ICME 2025 oral** | [Paper](https://arxiv.org/abs/2410.23754) | [Project Page](/projects/realmind) -->
 
-- BrainFLORA: Uncovering Brain Concept Representation via Multimodal Neural Embeddings 
+- BrainFLORA: Uncovering Brain Concept Representation via Multimodal Neural Embeddings
   **ACM MM 2025, under review**
