@@ -40,14 +40,12 @@ Computer Science, Supervisor: Dr. Qingxian Song
 
 ## Publications
 
-- **Visual decoding and reconstruction via eeg embeddings with guided diffusion.**  
-  **NeurIPS 2024**  
-  [Paper (arXiv:2403.07721)](https://arxiv.org/abs/2403.07721) | [Project Page](/projects/visual-decoding)
+- Visual decoding and reconstruction via eeg embeddings with guided diffusion
+  **NeurIPS 2024** | [Paper](https://arxiv.org/abs/2403.07721)
 
-- **RealMind: Advancing Visual Decoding and Language Interaction via EEG Signals.**  
-  **ICME 2025 oral**  
-  [Paper (arXiv:2410.23754)](https://arxiv.org/abs/2410.23754) | [Project Page](/projects/realmind)
+- RealMind: Advancing Visual Decoding and Language Interaction via EEG Signals
+  **ICME 2025 oral** | [Paper](https://arxiv.org/abs/2410.23754)
+    <!-- **ICME 2025 oral** | [Paper](https://arxiv.org/abs/2410.23754) | [Project Page](/projects/realmind) -->
 
-- **FLORA: A Unified Generalist Model for Visual Brain Decoding via Multimodal Neural Embeddings.**  
-  **ACM MM 2025, under review**  
-  [Paper (arXiv:2403.07721)](https://arxiv.org/abs/2403.07721) | [Project Page](/projects/flora)
+- BrainFLORA: Uncovering Brain Concept Representation via Multimodal Neural Embeddings 
+  **ACM MM 2025, under review**
