@@ -40,27 +40,14 @@ Computer Science, Supervisor: Dr. Qingxian Song
 
 ## Publications
 
-- Visual decoding and reconstruction via eeg embeddings with guided diffusion. (**NeurIPS 2024**)
-<p align="center">
-  <a href="#">
-  <p align="center">
-    <a href='https://arxiv.org/pdf/2403.07721'><img src='http://img.shields.io/badge/Paper-arxiv.2403.07721-B31B1B.svg'></a>
-  </p>
-</p>
+- **Visual decoding and reconstruction via eeg embeddings with guided diffusion.**  
+  **NeurIPS 2024**  
+  [Paper (arXiv:2403.07721)](https://arxiv.org/abs/2403.07721) | [Project Page](/projects/visual-decoding)
 
+- **RealMind: Advancing Visual Decoding and Language Interaction via EEG Signals.**  
+  **ICME 2025 oral**  
+  [Paper (arXiv:2410.23754)](https://arxiv.org/abs/2410.23754) | [Project Page](/projects/realmind)
 
-- RealMind: Advancing Visual Decoding and Language Interaction via EEG Signals. (**ICME 2025 oral**)
-<p align="center">
-  <a href="#">
-  <p align="center">
-    <a href='https://arxiv.org/pdf/2403.07721'><img src='http://img.shields.io/badge/Paper-arxiv.2403.07721-B31B1B.svg'></a>
-  </p>
-</p>
-
-- FLORA: A Unified Generalist Model for Visual Brain Decoding via Multimodal Neural Embeddings. (**ACM MM 2025**, under review)
-<p align="center">
-  <a href="#">
-  <p align="center">
-    <a href='https://arxiv.org/pdf/2403.07721'><img src='http://img.shields.io/badge/Paper-arxiv.2403.07721-B31B1B.svg'></a>
-  </p>
-</p>
+- **FLORA: A Unified Generalist Model for Visual Brain Decoding via Multimodal Neural Embeddings.**  
+  **ACM MM 2025, under review**  
+  [Paper (arXiv:2403.07721)](https://arxiv.org/abs/2403.07721) | [Project Page](/projects/flora)
