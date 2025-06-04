@@ -62,6 +62,8 @@ collections:
     output: true
 paginate_path: "/page/:num/"
 show_get_theme_btn: true
+get_theme_btn_text: "About Myself"
+get_theme_btn_url: "/cv"
 use_logo: false
 
 # Content paginator
