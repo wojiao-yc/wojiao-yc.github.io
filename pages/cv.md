@@ -6,12 +6,9 @@ title: CV
 description: My professional experience.
 permalink: /cv/
 ---
-
-<div class="cv-page">
-<img class="profile-img" src="/assets/img/uploads/profile.jpg" alt="wojiao-yc">
+<img class="img-rounded" src="/assets/img/uploads/profile.jpg" alt="wojiao-yc" width="200">
 
 # Haoyang Qin
-
 **Email**: 12211832@mail.sustech.edu.cn  
 **University**: Southern University of Science and Technology (SUSTech)  
 **Department**: Department of Biomedical Engineering  
@@ -51,6 +48,7 @@ Computer Science, Supervisor: Dr. Qingxian Song
   </p>
 </p>
 
+
 - RealMind: Advancing Visual Decoding and Language Interaction via EEG Signals. (**ICME 2025 oral**)
 <p align="center">
   <a href="#">
@@ -66,4 +64,3 @@ Computer Science, Supervisor: Dr. Qingxian Song
     <a href='https://arxiv.org/pdf/2403.07721'><img src='http://img.shields.io/badge/Paper-arxiv.2403.07721-B31B1B.svg'></a>
   </p>
 </p>
-</div>
