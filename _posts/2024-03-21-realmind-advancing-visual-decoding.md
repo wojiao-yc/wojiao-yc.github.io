@@ -1,7 +1,7 @@
 ---
 date: 2024-03-21 10:00:00
 layout: post
-title: RealMind: Advancing Visual Decoding and Language Interaction via EEG Signals
+title: "RealMind: Advancing Visual Decoding and Language Interaction via EEG Signals"
 subtitle: 'A novel EEG-based framework for visual decoding and language interaction'
 description: RealMind introduces a groundbreaking framework that combines EEG signals with vision-language models to achieve advanced visual decoding capabilities, including zero-shot visual captioning.
 image: https://res.cloudinary.com/dm7h7e8xj/image/upload/v1559825145/theme16_o0seet.jpg
