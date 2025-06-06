@@ -85,4 +85,4 @@ The framework's success in combining EEG signals with vision-language models pav
 
 ## References
 
-[1] Li, D., *Qin, H.*, et al. (2024). RealMind: Advancing Visual Decoding and Language Interaction via EEG Signals. arXiv:2410.23754 
+[1] Li, D., **Qin, H.**, et al. (2024). RealMind: Advancing Visual Decoding and Language Interaction via EEG Signals. arXiv:2410.23754 

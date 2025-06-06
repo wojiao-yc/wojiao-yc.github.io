@@ -23,11 +23,10 @@
     padding-bottom: rem(10px);
 
     @include media(">=sm") {
-      flex-basis: 70%;
+      flex-basis: 85%;
       padding: 0 rem(30px) 0 rem(10px);
     }
   }
-}
 
 .post-content {
   overflow-x: auto;
@@ -340,7 +339,7 @@
   padding: 0 rem(20px);
 
   @include media(">=sm") {
-    flex-basis: 30%;
+    flex-basis: 15%;
     padding: 0 rem(10px);
   }
 
