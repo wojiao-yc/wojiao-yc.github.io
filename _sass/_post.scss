@@ -308,7 +308,7 @@
     position: relative;
 
     .anchor {
-      // display: none !important; /* Force hide anchor links */
+      display: none !important; /* Force hide anchor links */
       height: rem(16px);
       left: 0;
       margin-top: rem(30px);
@@ -319,7 +319,7 @@
 
       @include media(">=sm") {
         /* Ensure it remains hidden even on larger screens */
-        // display: none !important;
+        display: none !important;
         opacity: 0;
       }
 
