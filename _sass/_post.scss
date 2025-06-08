@@ -308,28 +308,12 @@
     position: relative;
 
     .anchor {
-      display: none;
-      height: rem(16px);
-      left: 0;
-      margin-top: rem(30px);
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: rem(16px);
-
-      @include media(">=sm") {
-        display: block;
-        opacity: 0;
-      }
-
-      img {
-        padding: 0;
-      }
+      display: none !important; /* Force hide anchor links */
     }
 
     &:hover .anchor,
     .anchor:hover {
-      opacity: 1;
+      display: none !important; /* Ensure it remains hidden on hover */
     }
   }
 }
@@ -671,12 +655,7 @@
   }
 
   a.post-anchor {
-    display: block;
-    height: rem(40px);
-
-    @include media(">=sm") {
-      height: rem(10px);
-    }
+    display: none !important;
   }
 
   ul.post-list {
