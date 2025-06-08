@@ -449,9 +449,9 @@
     display: block;
     width: 100%;
     padding: 0;
-    height: rem(3px);
+    height: rem(7px);
     background-color: $themeColor;
-    opacity: 0.2;
+    
     &:after {
       clear: both;
       display: block;
