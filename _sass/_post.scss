@@ -462,7 +462,7 @@
   .completed {
     float: left;
     display: block;
-    height: rem(3px);
+    height: rem(7px);
     background-color: $themeColor;
     opacity: 1;
   }
@@ -470,8 +470,8 @@
   .remaining {
     float: left;
     display: block;
-    height: rem(3px);
-    background-color: #eee;
+    height: rem(7px);
+    background-color: #ccc;
   }
 
   .time-completed,
