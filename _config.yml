@@ -19,8 +19,6 @@ menu:
     url: /experience
   - title: Contact
     url: /contact
-  - title: Feed
-    url: /feed.xml
 email: 12211832@mail.sustech.edu.cn
 # See: https://disqus.com/
 disqus_username: disqus_username
