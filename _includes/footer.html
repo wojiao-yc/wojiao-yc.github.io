@@ -1,5 +1,6 @@
 <footer>
-    <p>
+  <div class="footer-main">
+    <div class="footer-social">
       {% if site.github_username %}
         <a href="https://github.com/{{ site.github_username }}" title="Github">
           <svg><use xlink:href="#icon-github"></use></svg>
@@ -30,13 +31,15 @@
           <svg><use xlink:href="#icon-linkedin"></use></svg>
         </a>
       {% endif %}
-    </p>
+    </div>
+    <div class="footer-links">
+      {% include links.html %}
+    </div>
+  </div>
 
-    {% include links.html %}
-
-    <p>
-      It was made with <svg class="love"><use xlink:href="#icon-heart"></use></svg> by <a href="https://github.com/wojiao-yc" target="_blank" class="creator">wojiao-yc</a>
-    </p>
+  <p>
+    It was made with <svg class="love"><use xlink:href="#icon-heart"></use></svg> by <a href="https://github.com/wojiao-yc" target="_blank" class="creator">wojiao-yc</a>
+  </p>
 </footer>
 
 {% assign social_urls = '' %}
