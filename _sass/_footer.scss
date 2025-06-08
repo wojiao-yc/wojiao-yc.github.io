@@ -101,8 +101,7 @@ footer {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-  gap: 20px;
+  justify-content: space-between;
 }
 
 .footer-links ul {
