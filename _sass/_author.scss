@@ -40,31 +40,6 @@
     h1, h2, h3, h4, h5, h6 {
       @include mainFont();
       margin: rem(20px) 0 rem(10px);
-      position: relative;
-
-      .anchor {
-        display: none;
-        height: rem(16px);
-        left: -rem(25px);
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: rem(16px);
-
-        @include media(">=sm") {
-          display: block;
-          opacity: 0;
-        }
-
-        img {
-          padding: 0;
-        }
-      }
-
-      &:hover .anchor,
-      .anchor:hover {
-        opacity: 1;
-      }
     }
 
     ul, ol {
@@ -148,5 +123,10 @@
     @include media(">=sm") {
       font-size: rem(18px);
     }
+  }
+
+  /* Force hide all anchor links within the author page */
+  .anchor {
+    display: none !important;
   }
 }
