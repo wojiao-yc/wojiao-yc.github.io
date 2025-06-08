@@ -96,3 +96,30 @@ footer {
     }
   }
 }
+
+.footer-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.footer-links ul {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.footer-links li {
+  margin: 0;
+  padding: 0;
+}
