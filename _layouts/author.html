@@ -17,21 +17,9 @@ layout: page
 
   <p>{{ page.bio }}</p>
 
-  <!-- 添加自我介绍部分 -->
   <div class="author-content">
     {{ content }}
   </div>
-
-  <h2>Posts</h2>
-
-  <ul>
-    {% assign filtered_posts = site.posts | where: 'author', page.name | where_exp:"post","post.is_generated != true" %}
-    {% for post in filtered_posts %}
-      <li>
-        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
 </div>
 
 {% assign author_urls = '' %}
