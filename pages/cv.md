@@ -6,7 +6,7 @@ title: CV
 description: My professional experience.
 permalink: /cv/
 ---
-<img class="img-rounded" src="/assets/img/uploads/profile.jpg" alt="wojiao-yc" width="200">
+<img class="img-rounded" src="/assets/img/profile_picture/profile.jpg" alt="wojiao-yc" width="200">
 
 # Haoyang Qin
 **Email**: 12211832@mail.sustech.edu.cn  

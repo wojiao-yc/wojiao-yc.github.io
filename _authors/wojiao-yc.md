@@ -1,6 +1,6 @@
 ---
 layout: author
-photo: /assets/img/uploads/profile.png
+photo: /assets/img/profile_picture/saber.png
 name: wojiao-yc
 display_name: wojiao-yc
 position: Shenzhen, China
