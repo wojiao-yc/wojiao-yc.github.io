@@ -437,18 +437,21 @@
   bottom: -100%;
   display: block;
   width: 100%;
-  padding: rem(10px) rem(20px) rem(5px);
+  padding: 0;
   transition: bottom 0.5s;
   background-color: rgba(0, 0, 0, 0.85);
 
   @include media(">=sm") {
-    padding: rem(16px) rem(20px) rem(9px);
+    padding: 0;
   }
 
   .bar {
     display: block;
     width: 100%;
-    padding: rem(8px) rem(60px);
+    padding: 0;
+    height: rem(3px);
+    background-color: $themeColor;
+    opacity: 0.2;
     &:after {
       clear: both;
       display: block;
@@ -459,30 +462,21 @@
   .completed {
     float: left;
     display: block;
-    height: rem(5px);
+    height: rem(3px);
     background-color: $themeColor;
+    opacity: 1;
   }
 
   .remaining {
     float: left;
     display: block;
-    height: rem(5px);
-    background-color: #ccc;
+    height: rem(3px);
+    background-color: #eee;
   }
 
   .time-completed,
   .time-remaining {
-    @include mainFont(400);
-    font-size: rem(18px);
-    color: #fff;
-  }
-
-  .time-completed {
-    float: left;
-  }
-
-  .time-remaining {
-    float: right;
+    display: none;
   }
 }
 
