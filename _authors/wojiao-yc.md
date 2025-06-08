@@ -21,7 +21,6 @@ Hello! I'm wojiao-yc, a passionate individual based in Shenzhen, China. My journ
 
 - **Technology**: I'm deeply interested in web development and software engineering
 - **Badminton**: As mentioned in my bio, I have a great passion for badminton
-- **Learning**: I believe in continuous learning and self-improvement
 
 ### What I Do
 
