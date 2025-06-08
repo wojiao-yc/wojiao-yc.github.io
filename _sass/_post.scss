@@ -309,11 +309,28 @@
 
     .anchor {
       display: none !important; /* Force hide anchor links */
+      height: rem(16px);
+      left: 0;
+      margin-top: rem(30px);
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: rem(16px);
+
+      @include media(">=sm") {
+        /* Ensure it remains hidden even on larger screens */
+        display: none !important;
+        opacity: 0;
+      }
+
+      img {
+        padding: 0;
+      }
     }
 
     &:hover .anchor,
     .anchor:hover {
-      display: none !important; /* Ensure it remains hidden on hover */
+      opacity: 1;
     }
   }
 }
@@ -655,7 +672,12 @@
   }
 
   a.post-anchor {
-    display: none !important;
+    display: block;
+    height: rem(40px);
+
+    @include media(">=sm") {
+      height: rem(10px);
+    }
   }
 
   ul.post-list {
