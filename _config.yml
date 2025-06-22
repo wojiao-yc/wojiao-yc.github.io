@@ -10,6 +10,7 @@ tags:
   - theme
   - netlify
 show_hero: true
+hero_image: /assets/img/hero.png
 menu:
   - title: Home
     url: /
