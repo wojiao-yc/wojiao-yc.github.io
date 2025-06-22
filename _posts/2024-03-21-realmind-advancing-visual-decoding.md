@@ -9,10 +9,7 @@ optimized_image: ..\assets\img\post\RealMind\RealMind_framework.png
 category: research
 tags:
   - EEG
-  - Brain-Computer Interface
   - Visual Decoding
-  - Machine Learning
-  - Deep Learning
 author: wojiao-yc
 ---
 
