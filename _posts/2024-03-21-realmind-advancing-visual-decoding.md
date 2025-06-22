@@ -4,8 +4,8 @@ layout: post
 title: RealMind
 subtitle: Advancing Visual Decoding and Language Interaction via EEG Signals
 description: A novel EEG-based framework for visual decoding and language interaction.
-image: ..\assets\img\post\RealMind\RealMind_framework.png
-optimized_image: ..\assets\img\post\RealMind\RealMind_framework.png
+image: ..\assets\img\posts\RealMind\RealMind_framework.png
+optimized_image: ..\assets\img\posts\RealMind\RealMind_framework.png
 category: research
 tags:
   - EEG
