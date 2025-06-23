@@ -4,8 +4,8 @@ layout: post
 title: RealMind
 subtitle: Advancing Visual Decoding and Language Interaction via EEG Signals
 description: A novel EEG-based framework for visual decoding and language interaction.
-image: ..\assets\img\posts\RealMind\RealMind_framework.png
-optimized_image: ..\assets\img\posts\RealMind\RealMind_framework.png
+image: ..\assets\img\posts\RealMind\RealMind.png
+optimized_image: ..\assets\img\posts\RealMind\RealMind.png
 category: research
 tags:
   - EEG
@@ -30,6 +30,8 @@ RealMind is a novel EEG-based framework designed to handle diverse downstream ta
    - First framework to achieve visual captioning from EEG data
    - Leverages pre-trained vision-language models
    - Enables zero-shot capabilities
+
+![RealMind Framework](..\assets\img\posts\RealMind\RealMind_framework.png)
 
 ## Key Achievements
 
