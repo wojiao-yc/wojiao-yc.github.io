@@ -19,7 +19,7 @@ Hello! I'm wojiao-yc, a passionate individual based in Shenzhen, China. My journ
 
 ### My Interests
 
-- **Technology**: I'm deeply interested in web development and software engineering
+- **Technology**: I'm deeply interested in AI (engineering oriented) and game development 
 - **Badminton**: As mentioned in my bio, I have a great passion for badminton
 
 ### What I Do
