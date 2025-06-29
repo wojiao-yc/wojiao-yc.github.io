@@ -237,7 +237,7 @@
     border-left: rem(5px) solid $texts;
     padding: 0 rem(10px);
     margin: rem(30px) auto; 
-    width: 90%;
+    // width: 90%;
 
     @include media(">=sm") {
       width: 100%;
