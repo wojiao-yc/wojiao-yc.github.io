@@ -236,12 +236,12 @@
     // @include center(rem(730px));  // 注释或删除这一行
     border-left: rem(5px) solid $texts;
     padding: 0 rem(10px);
-    margin: rem(30px) 0;   // 左右 margin 设为 0
+    margin: rem(30px) auto; 
     width: 90%;
 
     @include media(">=sm") {
       width: 100%;
-      margin: rem(50px) 0; // 左右 margin 设为 0
+      margin: rem(50px) auto; 
       padding: 0 rem(30px);
     }
 
