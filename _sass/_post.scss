@@ -233,7 +233,7 @@
   }
 
   blockquote {
-    // @include center(rem(730px));  // 注释或删除这一行
+    @include center(rem(1000px));
     border-left: rem(5px) solid $texts;
     padding: 0 rem(10px);
     margin: rem(30px) auto; 
