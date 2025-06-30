@@ -43,16 +43,92 @@ author: wojiao-yc
 ### 目标
 找到最优的权重 $w$ 和偏置 $b$，使得预测值与真实值之间的均方误差（MSE）最小化。
 
+### 详细内容
 - **简单一元线性回归**：$y = wx + b$
 给定两个点,就能确定其中的参数 $w$ 和 $b$。统计不像数学那么精确,统计会将理论与实际间的差别表示出来,也就是“误差”。因此,统计世界中的公式会有$\epsilon$ ,用来代表误差,即: $y = w_0 + w_1x + \epsilon$ 
 
 ### 实现流程
+1. 初始化模型参数（权重w和偏置b），通常设为0或小的随机值
+2. 计算预测值并计算损失函数（通常使用均方误差MSE）
+3. 计算损失函数对参数的梯度
+4. 使用梯度下降法更新参数
 
 ### 代码实现
+```python
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import r2_score
+
+class LinearRegression:
+    def __init__(self, learning_rate=0.01, n_iterations=1000):
+        """
+        Initialize Linear Regression model
+        
+        Parameters:
+        learning_rate -- step size for parameter updates (default 0.01)
+        n_iterations -- number of training iterations (default 1000)
+        """
+        self.learning_rate = learning_rate
+        self.n_iterations = n_iterations
+        self.weights = None  # weight parameters
+        self.bias = None     # bias parameter
+        self.loss_history = []  # to record loss at each iteration
+    
+    def fit(self, X, y):
+        """
+        Train the linear regression model
+        
+        Parameters:
+        X -- feature matrix of shape (n_samples, n_features)
+        y -- target vector of shape (n_samples,)
+        """
+        n_samples, n_features = X.shape
+        
+        # 1. Initialize parameters
+        self.weights = np.zeros(n_features)  # initialize weights to 0
+        self.bias = 0                       # initialize bias to 0
+        
+        # 2. Gradient descent iterations
+        for _ in range(self.n_iterations):
+            # Forward pass: compute predictions
+            y_pred = np.dot(X, self.weights) + self.bias
+            
+            # Compute loss (mean squared error)
+            loss = (1 / (2 * n_samples)) * np.sum((y_pred - y) ** 2)
+            self.loss_history.append(loss)
+            
+            # Compute gradients
+            dw = (1 / n_samples) * np.dot(X.T, (y_pred - y))  # weight gradients
+            db = (1 / n_samples) * np.sum(y_pred - y)         # bias gradient
+            
+            # Update parameters
+            self.weights -= self.learning_rate * dw
+            self.bias -= self.learning_rate * db
+    
+    def predict(self, X):
+        """
+        Make predictions using the trained model
+        
+        Parameters:
+        X -- feature matrix of shape (n_samples, n_features)
+        
+        Returns:
+        y_pred -- predicted values of shape (n_samples,)
+        """
+        return np.dot(X, self.weights) + self.bias
+```
+
 
 ### 面经
-**Q**：
->
+**Q**：线性回归的基本假设有哪些？
+> 线性关系假设（自变量X与因变量y之间存在线性关系），误差项独立同分布（无自相关），误差项之间无相关性（尤其时间序列数据），误差项正态分布（残差应服从均值为0的正态分布）
+
+**Q**：如何判断线性回归模型的好坏？
+> R²分数来解释模型的方差解释能力(0-1，越接近1越好)，均方误差(MSE)/均方根误差(RMSE)越小越好，残差分析（检查残差是否随机分布），也可以对比训练集和测试集表现来判断过拟合。
+
+**Q**：什么是R²分数？
+> 是评估线性回归模型拟合优度的指标，表示模型能够解释的目标变量方差比例。其取值范围通常在0到1之间，数值越大表示模型解释能力越强。R²通过比较模型预测误差（实际值与模型预测值的差异平方和）和基准误差（实际值与均值的差异平方和）来计算，具体来说计算公式为：R² = 1 - (模型预测误差 / 基准误差)
 
 [回到目录](#目录)
 
@@ -67,7 +143,14 @@ author: wojiao-yc
 - 最大化分类间隔，即找到使间隔最大的超平面，提高模型的泛化能力。
 - 最小化分类错误（在软间隔 SVM 中，允许少量样本违反间隔约束）。
 
+### 详细内容
+该[知乎专栏](https://www.zhihu.com/tardis/zm/art/31886934?source_id=1005)提供了极为详细的数学推导，这个[知乎专栏](https://zhuanlan.zhihu.com/p/77750026)则更为通俗易懂。
+
 ### 实现流程
+1. 选择一个超平面：找到一个能够最大化分类边界的超平面。
+2. 训练支持向量：通过支持向量机算法，选择离超平面最近的样本点作为支持向量。
+3. 通过最大化间隔来找到最优超平面：选择一个最优超平面，使得间隔最大化。
+4. 使用核函数处理非线性问题：通过核函数将数据映射到高维空间来解决非线性可分问题。
 
 ### 代码实现
 
@@ -89,9 +172,89 @@ K-近邻 是一种基于样本的**监督学习**算法，可用于分类和回�
 - 回归任务：基于K个最近邻的平均值，预测新样本的连续值。
 
 ### 实现流程
+1. 距离计算：对于待分类的样本点，计算它与训练集中每个样本点的距离
+2. 选择最近邻：根据计算的距离，选择距离最近的k个训练样本，即k-近邻名字的由来
+3. 投票决策：对于分类问题统计k个最近邻中各类别的数量，将待分类样本归为数量最多的类别；对于回归问题：取k个最近邻的目标值的平均值作为预测值
 
 ### 代码实现
+```python
+import numpy as np
+from collections import Counter
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score
 
+class KNN:
+    """
+    K-Nearest Neighbors classifier manual implementation
+    
+    Parameters:
+        k: int, optional (default=5), number of nearest neighbors to consider
+    """
+    
+    def __init__(self, k=5):
+        self.k = k
+    
+    def fit(self, X, y):
+        """
+        Train the KNN model (actually just stores the data as KNN is a lazy learner)
+        
+        Parameters:
+            X: Training feature data, array of shape [n_samples, n_features]
+            y: Training target values, array of shape [n_samples]
+        """
+        # Standardize data (improves KNN performance)
+        self.scaler = StandardScaler()
+        self.X_train = self.scaler.fit_transform(X)
+        self.y_train = y
+        
+    def predict(self, X):
+        """
+        Make predictions for test data
+        
+        Parameters:
+            X: Test feature data, array of shape [n_samples, n_features]
+            
+        Returns:
+            Predictions, array of shape [n_samples]
+        """
+        # Standardize test data (using mean and variance from training data)
+        X = self.scaler.transform(X)
+        # Initialize prediction array
+        predictions = np.zeros(X.shape[0], dtype=self.y_train.dtype)
+        
+        # Make prediction for each test sample
+        for i, x in enumerate(X):
+            # 1. Calculate distances between current test sample and all training samples
+            distances = self._compute_distances(x)
+            
+            # 2. Get indices of k nearest neighbors
+            k_indices = np.argpartition(distances, self.k)[:self.k]
+            
+            # 3. Get labels of these k neighbors
+            k_nearest_labels = self.y_train[k_indices]
+            
+            # 4. Vote for prediction (take most common class)
+            most_common = Counter(k_nearest_labels).most_common(1)
+            predictions[i] = most_common[0][0]
+            
+        return predictions
+    
+    def _compute_distances(self, x):
+        """
+        Calculate distances between one sample and all training samples (Euclidean distance)
+        
+        Parameters:
+            x: Single sample point, array of shape [n_features]
+            
+        Returns:
+            Array of distances, array of shape [n_train_samples]
+        """
+        # Euclidean distance calculation: sqrt(sum((x1 - x2)^2))
+        distances = np.sqrt(np.sum((self.X_train - x) ** 2, axis=1))
+        return distances
+```
 ### 面经
 **Q**：
 >
