@@ -22,6 +22,7 @@ author: wojiao-yc
 
 ### 激活函数
 
+### 其它
 
 
 ## 介绍
@@ -44,8 +45,7 @@ author: wojiao-yc
 找到最优的权重 $w$ 和偏置 $b$，使得预测值与真实值之间的均方误差（MSE）最小化。
 
 ### 详细内容
-- **简单一元线性回归**：$y = wx + b$
-给定两个点,就能确定其中的参数 $w$ 和 $b$。统计不像数学那么精确,统计会将理论与实际间的差别表示出来,也就是“误差”。因此,统计世界中的公式会有$\epsilon$ ,用来代表误差,即: $y = w_0 + w_1x + \epsilon$ 
+推荐看这篇[知乎专栏](https://zhuanlan.zhihu.com/p/72513104)。
 
 ### 实现流程
 1. 初始化模型参数（权重w和偏置b），通常设为0或小的随机值
@@ -147,16 +147,30 @@ class LinearRegression:
 该[知乎专栏](https://www.zhihu.com/tardis/zm/art/31886934?source_id=1005)提供了极为详细的数学推导，这个[知乎专栏](https://zhuanlan.zhihu.com/p/77750026)则更为通俗易懂。
 
 ### 实现流程
-1. 选择一个超平面：找到一个能够最大化分类边界的超平面。
-2. 训练支持向量：通过支持向量机算法，选择离超平面最近的样本点作为支持向量。
-3. 通过最大化间隔来找到最优超平面：选择一个最优超平面，使得间隔最大化。
-4. 使用核函数处理非线性问题：通过核函数将数据映射到高维空间来解决非线性可分问题。
+1. 构造最优化问题，求解出最优化的所有α
+2. 计算参数 $w$ 和 $b$
+3. 得出超平面与决策函数
 
 ### 代码实现
 
 ### 面经
-**Q**：
->
+**Q**：SVM为什么追求“最大间隔”？
+> 最大间隔能提高模型的泛化能力，使决策边界对噪声和数据扰动更鲁棒。间隔越大，未来新数据被分类错误的可能性越小。
+
+**Q**：SVM的优点是什么？
+> 1.**在高维空间中表现优秀**：训练好的模型的算法复杂度是由支持向量的个数决定的，而不是由数据的维度决定的，所以SVM也不太容易产生overfitting
+ 2.**核技巧灵活**，能适应复杂非线性问题：通过核函数，SVM可以隐式地将数据映射到更高维空间，从而解决线性不可分问题
+ 3.依赖支持向量而非全部数据，**内存效率高**：训练完成后，可以丢弃非支持向量的样本，节省存储空间，适合资源受限的场景
+
+**Q**：SVM的缺点是什么？
+> 1.**对参数和核函数选择敏感**：惩罚系数 $C$ 控制模型对分类错误的容忍度，越大说明越不能容忍出现误差，容易过拟合；越小则越容易欠拟合。另外不同的核函数对结果影响很大，需要交叉验证调整
+2.**黑盒性较强**，可解释性差：相比逻辑回归能分析权重和决策树能可视化规则，SVM的决策过程较难解释，且无法直接输出概率（需额外校准，如Platt Scaling）。
+
+**Q**：SVM为什么追求“最大间隔”？
+> 最大间隔能提高模型的泛化能力，使决策边界对噪声和数据扰动更鲁棒。间隔越大，未来新数据被分类错误的可能性越小。
+
+**Q**：SVM如何进行概率预测？
+> 可以使用 Platt Scaling 进行校准，在SVM的输出（决策函数值）上训练一个逻辑回归模型，将其映射到 [0,1] 区间。
 
 [回到目录](#目录)
 
@@ -170,6 +184,9 @@ K-近邻 是一种基于样本的**监督学习**算法，可用于分类和回�
 ### 目标
 - 分类任务：基于K个最近邻的多数投票，预测新样本的类别。
 - 回归任务：基于K个最近邻的平均值，预测新样本的连续值。
+
+### 详细内容
+推荐看这篇[文章](https://blog.csdn.net/m0_74405427/article/details/133714384)。
 
 ### 实现流程
 1. 距离计算：对于待分类的样本点，计算它与训练集中每个样本点的距离
@@ -256,8 +273,20 @@ class KNN:
         return distances
 ```
 ### 面经
-**Q**：
->
+**Q**： 如何选择合适的K值？
+>通过交叉验证（一种评估机器学习模型泛化能力的统计方法，核心思想是通过多次划分训练集和验证集，减少模型评估的随机性，从而更准确地估计模型在未知数据上的表现）尝试不同K值，选择在验证集上表现最好的K
+
+**Q**：讲一下KNN的优点
+>1.**简单直观，易于实现**:直接通过距离计算找到最近的邻居，无需复杂的数学推导
+2.**无需训练阶段**:KNN仅存储训练数据，预测时才计算距离，无需显式训练参数
+3.**对数据分布没有假设**：不像线性回归假设数据线性可分，或高斯朴素贝叶斯假设特征符合正态分布。KNN通过局部邻居投票，能捕捉非线性关系
+
+**Q**：讲一下KNN的缺点
+>1.计算复杂度高：需保存全部训练数据，内存占用大，对新样本需计算与所有训练样本的距离，时间复杂度为O(N·d)
+2.高维数据效果差（维度灾难）：在高维空间中，所有样本的距离趋于相似（欧氏距离区分度下降），导致邻居失去意义
+3.对不平衡数据敏感：若某类样本占90%，K个邻居中大概率全是多数类，少数类易被忽略
+4.需要特征缩放：若特征尺度差异大（如年龄[0-100]和工资[0-100000]），工资会主导距离计算
+
 
 [回到目录](#目录)
 
@@ -279,7 +308,7 @@ class KNN:
 
 ### 面经
 **Q**：逻辑回归和感知机的区别。
->简单的感知机其实和逻辑回归类似，都是数据乘上一个回归系数矩阵 $w$ 得到一个数 $y$，不过感知机不求概率，一般会选取一个分类边界，可能$y>0$就是$A$类别，$y<0$就是$B$类别。逻辑回归的损失函数由最大似然推导而来，用交叉熵损失，力图使预测概率分布与真实概率分布接近。感知机的损失函数可能有多种方法核心是针对误分类点到超平面的距离总和进行建模，即使预测的结果与真实结果误差更小，是去求得分类超平面（函数拟合）。这是两者最最根本的差异。
+>简单的感知机其实和逻辑回归类似，都是数据乘上一个回归系数矩阵 $w$ 得到一个数 $y$，不过感知机不求概率，一般会选取一个分类边界，可能 $y>0$ 就是 $A$ 类别，$y<0$ 就是 $B$ 类别。逻辑回归的损失函数由最大似然推导而来，用交叉熵损失，力图使预测概率分布与真实概率分布接近。感知机的损失函数可能有多种方法核心是针对误分类点到超平面的距离总和进行建模，即使预测的结果与真实结果误差更小，是去求得分类超平面（函数拟合）。这是两者最最根本的差异。
 
 [回到目录](#目录)
 
@@ -382,7 +411,12 @@ $$
 - $\prod_{i=1}^n P(x_i \mid y)$：基于特征独立性假设的联合概率
 - $\arg\max_{y}$：选择使后验概率最大的类别
 
+### 详细内容
+推荐看这篇[知乎专栏](https://zhuanlan.zhihu.com/p/656721603)。
+
 ### 实现流程
+1. 训练阶段输入已标注样本集输出各类别先验和各特征条件概率，即统计每个类别出现的频率，以及对每个特征在每个类别下统计其频率
+2. 预测阶段根据样本特征计算每个类别的概率，选择概率最大的类别作为预测类别
 
 ### 代码实现
 
@@ -390,47 +424,149 @@ $$
 import numpy as np
 
 class GaussianNaiveBayes:
+    """
+    A Gaussian Naive Bayes classifier implementation.
+    Assumes features follow normal distribution and are conditionally independent given the class.
+    """
+    
     def fit(self, X, y):
-        self.classes = np.unique(y)
-        self.mean = {}
-        self.var = {}
-        self.priors = {}
+        """
+        Train the Gaussian Naive Bayes model with training data.
         
+        Parameters:
+        X : numpy array, shape (n_samples, n_features)
+            Training feature vectors
+        y : numpy array, shape (n_samples,)
+            Target class labels
+        """
+        # Get unique class labels from training data
+        self.classes = np.unique(y)
+        
+        # Initialize dictionaries to store:
+        self.mean = {}      # Mean of each feature per class
+        self.var = {}       # Variance of each feature per class
+        self.priors = {}    # Prior probability of each class
+        
+        # Calculate statistics for each class
         for c in self.classes:
+            # Get samples belonging to current class
             X_c = X[y == c]
-            self.mean[c] = X_c.mean(axis=0)
-            self.var[c] = X_c.var(axis=0)
+            
+            # Calculate mean and variance of each feature for this class
+            self.mean[c] = X_c.mean(axis=0)  # Mean along each feature column
+            self.var[c] = X_c.var(axis=0)   # Variance along each feature column
+            
+            # Calculate prior probability: P(class=c)
             self.priors[c] = X_c.shape[0] / X.shape[0]
     
     def predict(self, X):
+        """
+        Make predictions for new samples using the trained model.
+        
+        Parameters:
+        X : numpy array, shape (n_samples, n_features)
+            Test feature vectors to predict
+            
+        Returns:
+        predictions : list
+            Predicted class labels for each test sample
+        """
         predictions = []
+        
+        # Process each test sample individually
         for x in X:
             posteriors = []
+            
+            # Calculate posterior probability for each class
             for c in self.classes:
-                # 高斯概率密度计算（简化版）
-                likelihood = np.exp(-(x - self.mean[c])**2 / (2 * self.var[c])) / np.sqrt(2 * np.pi * self.var[c])
+                # Calculate likelihood using Gaussian PDF (simplified computation):
+                # P(x|class=c) = product of P(x_i|class=c) for all features
+                exponent = -((x - self.mean[c]) ** 2) / (2 * self.var[c])
+                likelihood = np.exp(exponent) / np.sqrt(2 * np.pi * self.var[c])
+                
+                # Calculate posterior: P(class=c|x) ∝ P(x|class=c) * P(class=c)
                 posterior = np.prod(likelihood) * self.priors[c]
                 posteriors.append(posterior)
-            predictions.append(self.classes[np.argmax(posteriors)])
+            
+            # Select class with highest posterior probability
+            predicted_class = self.classes[np.argmax(posteriors)]
+            predictions.append(predicted_class)
+            
         return predictions
-
-# 测试手动实现
-model = GaussianNaiveBayes()
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
-print(f"Manual Accuracy: {accuracy_score(y_test, y_pred):.2f}")
 ```
 
 ### 面经
 **Q**：为什么叫朴素贝叶斯？
-
 >“朴素”指的是它对特征做了一个强假设认为所有特征之间完全独立。现实中这很少成立（比如“天气”和“湿度”可能相关），但这个假设简化了计算，使得算法高效。
 
+**Q**：朴素贝叶斯优点？
+>**计算快**：1.假设所有特征相互独立，计算联合概率时只需简单相乘，无需考虑特征间的复杂交互 2.训练时只需统计每个特征在各类别下的频率，预测时直接查表计算，速度极快
+**对小数据友好**：1.只需估计每个特征的边缘概率，而非特征间的联合概率 2.参数少，不容易过拟合
+**简单易实现**：1.多数实现只需选择分布类型，无需像SVM调核函数或随机森林调树深度 2.模型本质是一个概率统计表，训练过程只是计数或计算均值/方差，无需梯度下降等迭代优化
+**对缺失数据不敏感**：1.计算概率时，若某特征缺失，直接跳过该特征的乘积项，不影响其他特征贡献 2.统计特征概率时，缺失值不参与计数。
 
-**Q**：朴素贝叶斯的优缺点？
+**Q**：朴素贝叶斯缺点？
+>**独立性假设太强**、**零概率问题**（模型对未见特征直接判零概率），以及**对输入分布敏感**（如果数据不符合假设，效果可能变差）。
 
->优点是**计算快**（1.假设所有特征相互独立，计算联合概率时只需简单相乘，无需考虑特征间的复杂交互 2.训练时只需统计每个特征在各类别下的频率，预测时直接查表计算，速度极快）、**对小数据友好**（1.只需估计每个特征的边缘概率，而非特征间的联合概率 2.参数少，不容易过拟合）、**简单易实现**（1.多数实现只需选择分布类型，无需像SVM调核函数或随机森林调树深度 2.模型本质是一个概率统计表，训练过程只是计数或计算均值/方差，无需梯度下降等迭代优化）、**对缺失数据不敏感**（1.计算概率时，若某特征缺失，直接跳过该特征的乘积项，不影响其他特征贡献 2.统计特征概率时，缺失值不参与计数）。缺点是**独立性假设太强**、**零概率问题**（模型对未见特征直接判零概率），以及**对输入分布敏感**（如果数据不符合假设，效果可能变差）。
 
+
+[回到目录](#目录)
+
+---
+
+
+## 最小二乘法
+最小二乘法是一种数学优化技术，常用于数据拟合问题，目标是找到一个函数，使其尽可能准确地逼近一组观测数据。
+
+### 一、基本思想
+
+最小二乘法的核心思想是：  
+**在一组给定数据点下，选取一个函数，使得该函数预测值与实际值之间的“误差平方和”最小。**
+
+假设有 $n$ 个观测数据点：
+
+$(x_1, y_1),\ (x_2, y_2),\ \dots,\ (x_n, y_n)$
+
+我们希望找到一个函数，比如线性函数：
+
+$y = ax + b$
+
+使得预测值 $\hat{y}_i = ax_i + b$ 与真实值 $y_i$ 的误差最小。误差平方和为：
+
+$S(a, b) = \sum_{i=1}^n (y_i - (ax_i + b))^2$
+
+目标是求：
+
+$\min_{a, b} S(a, b)$
+
+### 二、推导过程（线性拟合）
+
+对 $S(a, b)$ 对参数 $a$ 和 $b$ 求偏导，并令偏导为 0，得到正规方程：
+
+$\frac{\partial S}{\partial a} = -2 \sum_{i=1}^n x_i(y_i - ax_i - b) = 0$
+
+$\frac{\partial S}{\partial b} = -2 \sum_{i=1}^n (y_i - ax_i - b) = 0$
+
+整理得到：
+
+$a \sum x_i^2 + b \sum x_i = \sum x_i y_i$
+
+$a \sum x_i + nb = \sum y_i$
+
+解这个二元一次方程组即可得到最优的 $a$ 和 $b$。
+
+### 三、扩展形式
+多元线性回归
+
+$y = a_1x_1 + a_2x_2 + \dots + a_kx_k + b$
+
+矩阵形式表达（适用于编程实现）
+
+$\text{给定 } A\in\mathbb{R}^{n\times p},\ b\in\mathbb{R}^{n},\ \text{最小化 } \|Ax - b\|_2^2$
+
+解为：
+
+$x = (A^TA)^{-1}A^Tb \quad (\text{前提：} A^TA \text{ 可逆})$
 
 [回到目录](#目录)
 
