@@ -152,6 +152,34 @@ class LinearRegression:
 3. 得出超平面与决策函数
 
 ### 五、代码实现
+```python
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+
+# 加载数据集
+iris = datasets.load_iris()
+X = iris.data
+y = iris.target
+
+# 划分训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# 创建SVM分类器
+clf = SVC(kernel='linear')
+
+# 训练模型
+clf.fit(X_train, y_train)
+
+# 预测
+y_pred = clf.predict(X_test)
+
+# 计算准确率
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy}")
+```
+直接使用见[这篇](https://geek-blogs.com/blog/svm-in-python/)，手动实现可以看[这篇](https://blog.csdn.net/m0_56694518/article/details/134957004)。
 
 ### 六、面经
 **Q**：SVM为什么追求"最大间隔"？
