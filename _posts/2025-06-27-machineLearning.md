@@ -16,9 +16,10 @@ author: wojiao-yc
 ### [介绍](#介绍)
 
 ### 经典算法
-[线性回归(linear regression)](#线性回归) &nbsp;&nbsp;&nbsp; [支持向量机(Support Vector Machine)](#支持向量机) &nbsp;&nbsp;&nbsp; [k-近邻(K-Nearest Neighbors)](#k-近邻) &nbsp;&nbsp;&nbsp; [逻辑回归(Logistic Regression)](#逻辑回归) &nbsp;&nbsp;&nbsp; [决策树(Decision Tree)](#决策树) &nbsp;&nbsp;&nbsp; [k-平均(k-means)](#k-平均) &nbsp;&nbsp;&nbsp; [随机森林(Random Forest)](#随机森林) &nbsp;&nbsp;&nbsp; [朴素贝叶斯(Naive Bayes)](#朴素贝叶斯)
+[线性回归(Linear Regression)](#线性回归) &nbsp;&nbsp;&nbsp; [支持向量机(Support Vector Machine)](#支持向量机) &nbsp;&nbsp;&nbsp; [k-近邻(K-Nearest Neighbors)](#k-近邻) &nbsp;&nbsp;&nbsp; [逻辑回归(Logistic Regression)](#逻辑回归) &nbsp;&nbsp;&nbsp; [决策树(Decision Tree)](#决策树) &nbsp;&nbsp;&nbsp; [k-平均(k-means)](#k-平均) &nbsp;&nbsp;&nbsp; [随机森林(Random Forest)](#随机森林) &nbsp;&nbsp;&nbsp; [朴素贝叶斯(Naive Bayes)](#朴素贝叶斯)
 
 ### 损失函数
+[交叉熵与KL散度(Cross Entropy & KL Divergence)](#交叉熵与KL散度) &nbsp;&nbsp;&nbsp; [最大似然估计(Maximum Likelihood Estimation)](#最大似然估计) 
 
 ### 激活函数
 
@@ -1246,6 +1247,53 @@ class GaussianNaiveBayes:
 >**独立性假设太强**、**零概率问题**（模型对未见特征直接判零概率），以及**对输入分布敏感**（如果数据不符合假设，效果可能变差）。
 
 
+
+[回到目录](#目录)
+
+---
+
+## 交叉熵与KL散度
+
+### 一、熵 (Entropy)
+
+熵是信息论中衡量随机变量不确定性的度量，定义为：
+
+$H(X) = -\sum_{x \in \mathcal{X}} p(x) \log p(x)$
+
+对于连续随机变量：
+$H(X) = -\int p(x) \log p(x) dx$
+
+- 熵越大，系统的不确定性越高
+- 当所有事件等概率时，熵达到最大值
+- 单位：比特（log₂）或纳特（ln）
+
+### 二、交叉熵 (Cross-Entropy)
+
+衡量两个概率分布差异的度量，用分布q表示分布p的期望编码长度：
+
+$H(p, q) = -\sum_{x} p(x) \log q(x)$
+
+- 常用作分类任务的损失函数
+- 当q为预测分布，p为真实分布时，最小化交叉熵等价于最大化似然
+
+### 三、KL散度 (Kullback-Leibler Divergence)
+
+衡量两个概率分布p和q差异的非对称度量：
+
+$D_{KL}(p \| q) = \sum_{x} p(x) \log \frac{p(x)}{q(x)}$
+
+- 非负性：$D_{KL}(p \| q) \geq 0$
+- 非对称性：$D_{KL}(p \| q) \neq D_{KL}(q \| p)$
+- 当且仅当p=q时，KL散度为0
+
+### 四、三者的关系
+
+$H(p, q) = H(p) + D_{KL}(p \| q)$
+
+其中：
+- $H(p)$ 是真实分布的熵
+- $D_{KL}(p \| q)$ 是分布差异
+- $H(p, q)$ 是交叉熵
 
 [回到目录](#目录)
 
