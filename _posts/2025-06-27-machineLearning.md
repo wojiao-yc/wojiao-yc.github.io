@@ -16,12 +16,13 @@ author: wojiao-yc
 ### [介绍](#介绍)
 
 ### 经典算法
-[线性回归(Linear Regression)](#线性回归) &nbsp;&nbsp;&nbsp; [支持向量机(Support Vector Machine)](#支持向量机) &nbsp;&nbsp;&nbsp; [k-近邻(K-Nearest Neighbors)](#k-近邻) &nbsp;&nbsp;&nbsp; [逻辑回归(Logistic Regression)](#逻辑回归) &nbsp;&nbsp;&nbsp; [决策树(Decision Tree)](#决策树) &nbsp;&nbsp;&nbsp; [k-平均(k-means)](#k-平均) &nbsp;&nbsp;&nbsp; [随机森林(Random Forest)](#随机森林) &nbsp;&nbsp;&nbsp; [朴素贝叶斯(Naive Bayes)](#朴素贝叶斯)
+[线性回归(Linear Regression)](#线性回归) &nbsp;&nbsp;&nbsp; [支持向量机(Support Vector Machine, SVM)](#支持向量机) &nbsp;&nbsp;&nbsp; [k-近邻(K-Nearest Neighbors, KNN)](#k-近邻) &nbsp;&nbsp;&nbsp; [逻辑回归(Logistic Regression)](#逻辑回归) &nbsp;&nbsp;&nbsp; [决策树(Decision Tree)](#决策树) &nbsp;&nbsp;&nbsp; [k-平均(k-means)](#k-平均) &nbsp;&nbsp;&nbsp; [随机森林(Random Forest)](#随机森林) &nbsp;&nbsp;&nbsp; [朴素贝叶斯(Naive Bayes)](#朴素贝叶斯)
 
 ### 损失函数
-[交叉熵与KL散度(Cross Entropy & KL Divergence)](#交叉熵与KL散度) &nbsp;&nbsp;&nbsp; [最大似然估计(Maximum Likelihood Estimation)](#最大似然估计) 
+[交叉熵 & KL散度(Cross Entropy & KL Divergence)](#交叉熵与相对熵) &nbsp;&nbsp;&nbsp; [最大似然估计(Maximum Likelihood Estimation, MLE) & 最大后验估计(Maximum A Posteriori Estimation, MAP)](#最大似然估计与最大后验估计) 
 
 ### 激活函数
+[Softmax](#softmax) &nbsp;&nbsp;&nbsp; [Sigmoid](#sigmoid) &nbsp;&nbsp;&nbsp; [Tanh](#tanh) &nbsp;&nbsp;&nbsp; [Relu](#relu) &nbsp;&nbsp;&nbsp; [ELU](#elu) &nbsp;&nbsp;&nbsp; [GELU](#gelu)
 
 ### 其它
 [最小二乘法(least sqaure method)](#最小二乘法)
@@ -1252,16 +1253,17 @@ class GaussianNaiveBayes:
 
 ---
 
-## 交叉熵与KL散度
+## 交叉熵与相对熵
 
 ### 一、熵 (Entropy)
 
 熵是信息论中衡量随机变量不确定性的度量，定义为：
 
-$H(X) = -\sum_{x \in \mathcal{X}} p(x) \log p(x)$
+$$H(X) = -\sum_{x \in \mathcal{X}} p(x) \log p(x)$$
 
 对于连续随机变量：
-$H(X) = -\int p(x) \log p(x) dx$
+
+$$H(X) = -\int p(x) \log p(x) dx$$
 
 - 熵越大，系统的不确定性越高
 - 当所有事件等概率时，熵达到最大值
@@ -1271,7 +1273,7 @@ $H(X) = -\int p(x) \log p(x) dx$
 
 衡量两个概率分布差异的度量，用分布q表示分布p的期望编码长度：
 
-$H(p, q) = -\sum_{x} p(x) \log q(x)$
+$$H(p, q) = -\sum_{x} p(x) \log q(x)$$
 
 - 常用作分类任务的损失函数
 - 当q为预测分布，p为真实分布时，最小化交叉熵等价于最大化似然
@@ -1280,7 +1282,7 @@ $H(p, q) = -\sum_{x} p(x) \log q(x)$
 
 衡量两个概率分布p和q差异的非对称度量：
 
-$D_{KL}(p \| q) = \sum_{x} p(x) \log \frac{p(x)}{q(x)}$
+$$D_{KL}(p \| q) = \sum_{x} p(x) \log \frac{p(x)}{q(x)}$$
 
 - 非负性：$D_{KL}(p \| q) \geq 0$
 - 非对称性：$D_{KL}(p \| q) \neq D_{KL}(q \| p)$
@@ -1288,7 +1290,7 @@ $D_{KL}(p \| q) = \sum_{x} p(x) \log \frac{p(x)}{q(x)}$
 
 ### 四、三者的关系
 
-$H(p, q) = H(p) + D_{KL}(p \| q)$
+$$H(p, q) = H(p) + D_{KL}(p \| q)$$
 
 其中：
 - $H(p)$ 是真实分布的熵
@@ -1299,6 +1301,197 @@ $H(p, q) = H(p) + D_{KL}(p \| q)$
 
 ---
 
+## 最大似然估计与最大后验估计
+虽然把这两个归在损失函数部分，但这两个都不是某个具体的损失函数，要根据任务的性质利用这两个思想推导出真正的损失函数，如最小二乘法就是误差满足正态分布的最大似然估计。
+
+### 一、最大似然估计（Maximum Likelihood Estimation, MLE）
+在给定观测数据 $X$ 的情况下，找到**最可能**生成这些数据的参数 $\theta$，即最大化似然函数 $P(X|\theta)$。
+
+$$\hat{\theta}_{MLE} = \arg\max_{\theta} P(X|\theta)$$
+
+- **频率学派**方法，认为参数是固定未知的
+- 不考虑参数的先验信息
+- 当数据量较少时可能过拟合
+
+如，对于伯努利分布（硬币抛掷），MLE估计结果为：
+
+$$\hat{p}_{MLE} = \frac{\text{正面朝上次数}}{\text{总抛掷次数}}$$
+
+### 二、最大后验估计（Maximum A Posteriori Estimation, MAP）
+
+在MLE基础上引入参数的**先验分布** $P(\theta)$，寻找在给定数据后验分布下最可能的参数值。
+
+$$\hat{\theta}_{MAP} = \arg\max_{\theta} P(\theta|X) = \arg\max_{\theta} P(X|\theta)P(\theta)$$
+
+- **贝叶斯学派**方法，将参数视为随机变量
+- 通过先验分布引入领域知识
+- 相当于在MLE基础上增加了正则化项
+
+如，当使用Beta分布作为伯努利分布参数的先验时：
+
+$$\hat{p}_{MAP} = \frac{\text{正面次数} + \alpha - 1}{\text{总次数} + \alpha + \beta - 2}$$
+
+### 三、关系总结
+
+| 特性                | MLE                          | MAP                          |
+|---------------------|-----------------------------|-----------------------------|
+| 目标函数            | $P(X|\theta)$               | $P(X|\theta)P(\theta)$      |
+| 学派                | 频率学派                     | 贝叶斯学派                   |
+| 先验信息            | 不使用                       | 使用                        |
+| 数据量较少时        | 可能表现不稳定               | 通常更稳定                  |
+| 计算复杂度          | 通常较简单                   | 可能需要更复杂计算          |
+- 当先验分布是**均匀分布**时，MAP退化为MLE
+- MAP可以看作是MLE加上对参数的先验知识
+- 随着数据量增加，先验的影响减小，MAP会趋近于MLE
+
+>更加详细的解释可以看这篇[博客园](https://www.cnblogs.com/yhyxy/p/17301661.html)与这篇[知乎专栏](https://zhuanlan.zhihu.com/p/46737512)。
+
+[回到目录](#目录)
+
+---
+## Softmax
+### 一、公式
+$$
+\text{Softmax}(x_i) = \frac{e^{x_i}}{\sum_{j=1}^n e^{x_j}}
+$$
+
+### 二、特点
+- 输出范围：(0, 1) 且所有输出之和为1
+- 将输入转换为概率分布
+- 对输入值的相对大小敏感（指数放大效应）
+- 常用于多分类任务的输出层
+- 在数值较大时可能出现计算溢出（需配合LogSoftmax或减最大值技巧使用）
+
+### 三、导数
+对于输出向量 $\mathbf{y} = \text{Softmax}(\mathbf{x})$，其Jacobian矩阵为：
+$$
+\frac{\partial y_i}{\partial x_j} = 
+\begin{cases}
+y_i(1 - y_j) & \text{if } i = j \\
+-y_i y_j & \text{if } i \neq j
+\end{cases}
+$$
+
+[回到目录](#目录)
+
+---
+
+## Sigmoid
+### 一、公式
+$$
+\sigma(x) = \frac{1}{1 + e^{-x}}
+$$
+
+### 二、特点
+- 输出范围：(0, 1)
+- 容易导致梯度消失（梯度饱和）
+- 输出非零中心（可能影响梯度下降效率）
+- 常用于二分类输出层
+
+
+### 三、导数
+$$
+\sigma'(x) = \sigma(x)(1 - \sigma(x))
+$$
+
+[回到目录](#目录)
+
+---
+
+## Tanh
+### 一、公式
+$$
+\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}} = 2\sigma(2x) - 1
+$$
+
+### 二、特点
+- 输出范围：(-1, 1)
+- 零中心输出（优于Sigmoid）
+- 仍然存在梯度消失问题
+- 常用于RNN隐藏层
+
+### 三、导数
+$$
+\tanh'(x) = 1 - \tanh^2(x)
+$$
+
+[回到目录](#目录)
+
+---
+
+## ReLU
+### 一、公式
+$$
+\text{ReLU}(x) = \max(0, x)
+$$
+
+### 二、特点
+- 计算效率极高
+- 缓解梯度消失问题（正区间）
+- 负区间梯度为0
+- 最常用的默认激活函数
+
+
+### 三、导数
+$$
+\text{ReLU}'(x) = 
+\begin{cases} 
+1 & \text{if } x > 0 \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+[回到目录](#目录)
+
+---
+
+## ELU
+### 一、公式
+$$
+\text{ELU}(x) = 
+\begin{cases}
+x & \text{if } x > 0 \\
+\alpha(e^x - 1) & \text{otherwise}
+\end{cases}
+$$
+
+### 二、特点
+- 负区间平滑收敛
+- 近似零中心输出
+- 计算成本略高（涉及指数运算）
+
+### 三、导数
+$$
+\text{ELU}'(x) = 
+\begin{cases} 
+1 & \text{if } x > 0 \\
+\text{ELU}(x) + \alpha & \text{otherwise}
+\end{cases}
+$$
+
+[回到目录](#目录)
+
+---
+
+## GELU
+### 一、公式
+$$
+\text{GELU}(x) = x \Phi(x) \quad (\Phi \text{为标准正态分布CDF})
+$$
+
+### 二、特点
+- BERT、GPT等Transformer模型采用
+- 考虑神经元输入的随机正则化效果
+- 计算成本较高（涉及特殊函数）
+
+### 三、近似计算
+$$
+\text{GELU}(x) \approx 0.5x(1 + \tanh[\sqrt{2/\pi}(x + 0.044715x^3)])
+$$
+
+[回到目录](#目录)
+
+---
 
 ## 最小二乘法
 最小二乘法是一种数学优化技术，常用于数据拟合问题，目标是找到一个函数，使其尽可能准确地逼近一组观测数据。
