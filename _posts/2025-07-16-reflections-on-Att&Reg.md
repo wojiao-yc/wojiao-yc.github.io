@@ -48,7 +48,7 @@ This experiment investigates how changes in architecture (e.g., whitening, share
 
 ### Comparison Baseline
 
-- **Ridge Regression:** With a small L2 regularization ($λ=1e-3$) to ensure numerical stability. Serves as the ground truth in both synthetic and real settings.
+- **Ridge Regression:** With a small L2 regularization ($λ = 1 \times 10^{-3}$) to ensure numerical stability. Serves as the ground truth in both synthetic and real settings.
 
 ---
 
