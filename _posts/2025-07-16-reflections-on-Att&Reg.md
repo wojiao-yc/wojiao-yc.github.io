@@ -75,7 +75,7 @@ In synthetic settings, where true weights are known, I compared:
 
 - **True Weights**
 - **Estimated Weights from Ridge Regression**
-- **Effective Weights from Attention:** calculated via $W_combined @ X.T @ Y / d_features$
+- **Effective Weights from Attention:** calculated via $W_{combined} @ X.T @ Y / d_{features}$
 
 This gives insight into what the attention model "learns" implicitly.
 
