@@ -32,7 +32,7 @@ This experiment investigates how changes in architecture (e.g., whitening, share
 ### Data Modes
 
 - **Synthetic Linear Data:** Controlled environment with known ground-truth weights and structured feature correlation.
-- **Real Data:** Diabetes dataset from `scikit-learn`, scaled and split.
+- **Real Data:** Diabetes dataset from scikit-learn, scaled and split.
 - **Simple Data:** A toy example using sine activation to inject nonlinearity.
 
 ### Attention Variants
@@ -44,11 +44,11 @@ This experiment investigates how changes in architecture (e.g., whitening, share
 ### Architectural Choices
 
 - **With / Without Whitening:** Use of whitening matrix derived from eigendecomposition of covariance.
-- **Shared vs. Separate Weight Matrices:** Determines whether `Wq` and `Wk` are tied.
+- **Shared vs. Separate Weight Matrices:** Determines whether $Wq$ and $Wk$ are tied.
 
 ### Comparison Baseline
 
-- **Ridge Regression:** With a small L2 regularization (`λ=1e-3`) to ensure numerical stability. Serves as the ground truth in both synthetic and real settings.
+- **Ridge Regression:** With a small L2 regularization ($λ=1e-3$) to ensure numerical stability. Serves as the ground truth in both synthetic and real settings.
 
 ---
 
@@ -62,7 +62,7 @@ For each configuration, I computed MSE (mean squared error) on both training and
 
 The projection behavior was analyzed by comparing:
 
-- **Hat Matrix (H)** from ridge regression: `X(XᵀX + λI)⁻¹Xᵀ`
+- **Hat Matrix (H)** from ridge regression: $X(XᵀX + λI)⁻¹Xᵀ$
 - **Attention Weight Matrix (A):** learned during training
 - **Raw Scores (QKᵀ)**
 - **Weight Composition (Wq @ Wkᵀ)**
@@ -75,7 +75,7 @@ In synthetic settings, where true weights are known, I compared:
 
 - **True Weights**
 - **Estimated Weights from Ridge Regression**
-- **Effective Weights from Attention:** calculated via `W_combined @ X.T @ Y / d_features`
+- **Effective Weights from Attention:** calculated via $W_combined @ X.T @ Y / d_features$
 
 This gives insight into what the attention model "learns" implicitly.
 
