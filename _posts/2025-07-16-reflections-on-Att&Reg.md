@@ -13,9 +13,7 @@ tags:
 author: wojiao-yc
 ---
 
->[The original blog can be found here](https://c16mftang.github.io/attention.html)
-
-In the blog post "Attention and Linear Regression," a fascinating claim is made: attention and linear regression share similar mathematical structures—most notably matrix operations involving dot products and normalization—yet behave very differently in practice. This insight led me to a deeper realization:
+In the blog post "[Attention and Linear Regression](https://c16mftang.github.io/attention.html)", a fascinating claim is made: attention and linear regression share similar mathematical structures—most notably matrix operations involving dot products and normalization—yet behave very differently in practice. This insight led me to a deeper realization:
 
 > **Everything is matter.** Not just the mathematical forms, but the underlying context, mechanisms, and behavior.
 
@@ -48,7 +46,7 @@ This experiment investigates how changes in architecture (e.g., whitening, share
 
 ### Comparison Baseline
 
-- **Ridge Regression:** With a small L2 regularization ($λ = 1 \times 10^{-3}$) to ensure numerical stability. Serves as the ground truth in both synthetic and real settings.
+**Ridge Regression:** With a small L2 regularization ($λ = 1 \times 10^{-3}$) to ensure numerical stability. Serves as the ground truth in both synthetic and real settings.
 
 ---
 
@@ -62,10 +60,10 @@ For each configuration, I computed MSE (mean squared error) on both training and
 
 The projection behavior was analyzed by comparing:
 
-- **Hat Matrix (H)** from ridge regression: $X(XᵀX + λI)⁻¹Xᵀ$
+- **Hat Matrix ($H$)** from ridge regression: $X(X^TX + λI)^{-1}X^T$
 - **Attention Weight Matrix (A):** learned during training
-- **Raw Scores (QKᵀ)**
-- **Weight Composition (Wq @ Wkᵀ)**
+- **Raw Scores ($QK^T$)**
+- **Weight Composition ($W_qW_k^T$)**
 
 These matrices were visualized side-by-side to inspect similarities and divergences in projection behavior.
 
@@ -75,7 +73,7 @@ In synthetic settings, where true weights are known, I compared:
 
 - **True Weights**
 - **Estimated Weights from Ridge Regression**
-- **Effective Weights from Attention:** calculated via $W_{combined} @ X.T @ Y / d_{features}$
+- **Effective Weights from Attention:** calculated via $W_{combined} X^T Y / d_{features}$
 
 This gives insight into what the attention model "learns" implicitly.
 
@@ -90,31 +88,18 @@ Even when attention and regression achieve similar **output quality**, their **m
 
 ---
 
-## Key Takeaway
-
-This exploration confirms the original blog’s thesis, but in a more empirical and systematic way:
-
-> **Same math ≠ same meaning.**
-
-- **Regression** makes assumptions about global structure.
-- **Attention** adapts to local or learned similarity, which can align—but does not have to.
-
-The core operations may look similar (dot products, projections), but their **semantics and emergent behaviors differ**.
-
----
 
 ## Closing Thoughts
 
-This project began with curiosity and ended with clarity:
+This exploration confirms the original blog’s thesis, but in a more empirical and systematic way. The core operations may look similar (dot products, projections), but their **semantics and emergent behaviors differ**.
 
-- Attention isn’t just a "fancy matrix multiplication."
-- Linear regression isn’t "just another dot product model."
+- **Attention** isn’t just a "fancy matrix multiplication", it adapts to local or learned similarity, which can align—but does not have to.
+- **Linear regression** isn’t "just another dot product model", it makes assumptions about global structure.
 
 They reflect different philosophies: one built on **analytic closure**, the other on **contextual flexibility**.
 
-> In ML, structure matters—but **behavior matters more**.
+> > **Same math ≠ same meaning**, structure matters—but **behavior matters more**.
 
-If you're interested in the code or extending the comparison to more complex data (e.g., images, sequences), feel free to reach out. This kind of "structure vs. behavior" analysis is a powerful lens for understanding machine learning beyond the formulas.
+This kind of "structure vs. behavior" analysis is a powerful lens for understanding machine learning beyond the formulas.
 
 ---
-
